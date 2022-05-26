@@ -1,4 +1,4 @@
-import { Button, useToast } from '@chakra-ui/react'
+import { Button, Link, useToast } from '@chakra-ui/react'
 import {
   createBurnInstruction,
   createCloseAccountInstruction,
@@ -44,6 +44,10 @@ export const CloseAccountButton = ({ token }: CloseAccountButtonProps) => {
 
     try {
       const signature = await wallet.sendTransaction(transaction, connection)
+      toast({
+        title: 'Transaction sent',
+        description: signature,
+      })
       const latestBlockHash = await connection.getLatestBlockhash()
       await connection.confirmTransaction(
         {
