@@ -1,8 +1,15 @@
-import '../styles/globals.css'
+import { ChakraProvider } from '@chakra-ui/react'
+import { SolanaProvider } from 'components/SolanaProvider'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <ChakraProvider resetCSS>
+      <SolanaProvider>
+        <Component {...pageProps} />
+      </SolanaProvider>
+    </ChakraProvider>
+  )
 }
 
-export default MyApp
+export default App
